@@ -29,7 +29,6 @@ def main():
         "📚 Learning Skills": ["Read a Book", "Practice Coding", "Learn New Words", "Watch Educational Video", "Solve Puzzles"],
         "🎮 Entertainment": ["Listen to Music", "Watch a Movie", "Play a Game", "Draw or Paint", "Spend Time with Friends"]
     }
-    m
     st.sidebar.title("✅ Task Categories")
     completed_tasks = 0
     total_tasks = sum(len(tasks) for tasks in categories.values())
@@ -57,4 +56,3 @@ def main():
     
 if __name__ == "__main__":
     main()
-
