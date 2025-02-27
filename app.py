@@ -2,7 +2,7 @@ import streamlit as st
 from datetime import datetime
 
 def set_bg():
-    bg_url = "https://raw.githubusercontent.com/Malik-Danish-Rashid/self-care-app/26b40200b946b860e2ebcdb7a426ec585f8bd265/pic.png"
+    bg_url = "https://raw.githubusercontent.com/Malik-Danish-Rashid/self-care-app/afb5fc6a12b8a7a702fa8bdc1e93407413d60cd0/pic.png"
     bg_style = f"""
     <style>
     [data-testid="stAppViewContainer"] {{
