@@ -6,7 +6,7 @@ st.set_page_config(page_title="Self-Care App", layout="wide")
 page_bg_img = f'''
 <style>
 [data-testid="stAppViewContainer"] {{
-    background-image: url("https://raw.githubusercontent.com/your-github-repo/image-path.jpeg");
+    background-image: url("https://github.com/Malik-Danish-Rashid/self-care-app/blob/main/Flux_Dev_Create_a_serene_and_uplifting_illustration_that_embod_0.jpeg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
