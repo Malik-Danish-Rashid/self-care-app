@@ -15,30 +15,45 @@ def set_bg():
         padding: 10px;
         color: white !important;
     }}
+    .main-container {{
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+    }}
     .main-title {{
-        color: #ffffff; 
+        color: #ffffff !important; 
         text-align: center;
         font-size: 36px;
         font-weight: bold;
         text-shadow: 2px 2px 4px #000000;
+        margin-bottom: 10px;
     }}
     .sub-header {{
-        color: #ffffff; 
+        color: #ffffff !important; 
         text-align: center;
         font-size: 20px;
         text-shadow: 1px 1px 2px #000000;
+        margin-bottom: 20px;
     }}
     .task-progress {{
-        color: #ffffff;
+        color: #ffffff !important;
         background-color: rgba(0, 0, 0, 0.6);
-        padding: 10px;
+        padding: 15px;
         border-radius: 5px;
+        margin: 15px 0;
     }}
     .stCheckbox label {{
         color: white !important;
     }}
     .stProgress > div > div > div {{
         background-color: #4CAF50 !important;
+    }}
+    .status-message {{
+        background-color: rgba(0, 0, 0, 0.7) !important;
+        color: white !important;
+        padding: 10px;
+        border-radius: 5px;
     }}
     </style>
     """
@@ -47,8 +62,12 @@ def set_bg():
 def main():
     set_bg()
 
-    st.markdown('<h1 class="main-title">🌿 Self-Care Application</h1>', unsafe_allow_html=True)
-    st.markdown(f'<h3 class="sub-header">📅 Date: {datetime.now().strftime("%Y-%m-%d")}</h3>', unsafe_allow_html=True)
+    st.markdown("""
+    <div class="main-container">
+        <h1 class="main-title">🌿 Self-Care Application</h1>
+        <h3 class="sub-header">📅 Date: {date}</h3>
+    </div>
+    """.format(date=datetime.now().strftime("%Y-%m-%d")), unsafe_allow_html=True)
 
     categories = {
         "💪 Physical Health": ["🏃 Morning Exercise", "💧 Drink Water", "🥗 Eat Healthy", "🚶 Go for a Walk", "😴 Get Enough Sleep"],
@@ -67,19 +86,40 @@ def main():
                 completed_tasks += 1
 
     progress = (completed_tasks / total_tasks) * 100 if total_tasks else 0
-    st.markdown(f'<div class="task-progress">✅ Tasks Completed: {completed_tasks}/{total_tasks} ({progress:.0f}%)</div>', 
-                unsafe_allow_html=True)
+    
+    st.markdown(f"""
+    <div class="task-progress">
+        <h3>✅ Tasks Completed: {completed_tasks}/{total_tasks} ({progress:.0f}%)</h3>
+    </div>
+    """, unsafe_allow_html=True)
     st.progress(progress / 100)
 
+    status_container = st.empty()
     if progress >= 70:
-        st.success("🎯 Perfect! Keep it up! 💪")
+        status_container.markdown("""
+        <div class="status-message">
+            🎯 Perfect! Keep it up! 💪
+        </div>
+        """, unsafe_allow_html=True)
     elif progress >= 40:
-        st.info("👍 Good Job! You're on the right track!")
+        status_container.markdown("""
+        <div class="status-message">
+            👍 Good Job! You're on the right track!
+        </div>
+        """, unsafe_allow_html=True)
     else:
-        st.warning("🔥 You can do it! Keep pushing!")
+        status_container.markdown("""
+        <div class="status-message">
+            🔥 You can do it! Keep pushing!
+        </div>
+        """, unsafe_allow_html=True)
 
     st.write("---")
-    st.caption("🌱 Made with ❤️ by Noa")
+    st.markdown("""
+    <div style="color: white; background-color: rgba(0, 0, 0, 0.6); padding: 10px; border-radius: 5px;">
+        🌱 Made with ❤️ by Noa
+    </div>
+    """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
