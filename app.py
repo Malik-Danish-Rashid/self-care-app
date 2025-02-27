@@ -1,5 +1,6 @@
 import streamlit as st
 from datetime import datetime
+
 def set_bg():
     bg_url = "https://raw.githubusercontent.com/Malik-Danish-Rashid/self-care-app/26b40200b946b860e2ebcdb7a426ec585f8bd265/pic.png"
     bg_style = f"""
@@ -14,19 +15,20 @@ def set_bg():
         padding: 10px;
     }}
     .main-title {{
-        color: #ff7f50; 
+        color: #000000;  /* Changed to black */
         text-align: center;
         font-size: 36px;
         font-weight: bold;
     }}
     .sub-header {{
-        color: #4B0082;
+        color: #000000;  /* Changed to black */
         text-align: center;
         font-size: 20px;
     }}
     </style>
     """
     st.markdown(bg_style, unsafe_allow_html=True)
+
 def main():
     set_bg() 
 
@@ -65,6 +67,3 @@ def main():
 if __name__ == "__main__":
     main()
     st.caption("✨ Noa's Project")
-    
-if __name__ == "__main__":
-    main()
