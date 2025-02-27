@@ -10,27 +10,42 @@ def set_bg():
         background-size: cover;
     }}
     [data-testid="stSidebar"] {{
-        background-color: rgba(255, 255, 255, 0.8);
+        background-color: rgba(40, 40, 40, 0.95) !important;
         border-radius: 10px;
         padding: 10px;
+        color: white !important;
     }}
     .main-title {{
-        color: #000000;  /* Changed to black */
+        color: #ffffff; 
         text-align: center;
         font-size: 36px;
         font-weight: bold;
+        text-shadow: 2px 2px 4px #000000;
     }}
     .sub-header {{
-        color: #000000;  /* Changed to black */
+        color: #ffffff; 
         text-align: center;
         font-size: 20px;
+        text-shadow: 1px 1px 2px #000000;
+    }}
+    .task-progress {{
+        color: #ffffff;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 10px;
+        border-radius: 5px;
+    }}
+    .stCheckbox label {{
+        color: white !important;
+    }}
+    .stProgress > div > div > div {{
+        background-color: #4CAF50 !important;
     }}
     </style>
     """
     st.markdown(bg_style, unsafe_allow_html=True)
 
 def main():
-    set_bg() 
+    set_bg()
 
     st.markdown('<h1 class="main-title">🌿 Self-Care Application</h1>', unsafe_allow_html=True)
     st.markdown(f'<h3 class="sub-header">📅 Date: {datetime.now().strftime("%Y-%m-%d")}</h3>', unsafe_allow_html=True)
@@ -46,13 +61,15 @@ def main():
     total_tasks = sum(len(tasks) for tasks in categories.values())
 
     for category, tasks in categories.items():
-        st.sidebar.subheader(category)
+        st.sidebar.markdown(f'**{category}**', unsafe_allow_html=True)
         for task in tasks:
             if st.sidebar.checkbox(task):
                 completed_tasks += 1
+
     progress = (completed_tasks / total_tasks) * 100 if total_tasks else 0
+    st.markdown(f'<div class="task-progress">✅ Tasks Completed: {completed_tasks}/{total_tasks} ({progress:.0f}%)</div>', 
+                unsafe_allow_html=True)
     st.progress(progress / 100)
-    st.write(f"### ✅ Tasks Completed: {completed_tasks}/{total_tasks} ({progress:.0f}%)")
 
     if progress >= 70:
         st.success("🎯 Perfect! Keep it up! 💪")
